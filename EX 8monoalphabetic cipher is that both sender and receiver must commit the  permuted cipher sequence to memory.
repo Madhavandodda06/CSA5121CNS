@@ -1,0 +1,31 @@
+
+#Monoalphabetic cipher using keyword
+
+import string
+
+def generate_key(keyword):
+    alphabet = string.ascii_lowercase
+    key = ""
+    for ch in keyword.lower():
+        if ch not in key:
+            key += ch
+    for ch in alphabet:
+        if ch not in key:
+            key += ch
+    return key
+
+def encrypt(pt, key):
+    alphabet = string.ascii_lowercase
+    ct = ""
+    for ch in pt.lower():
+        if ch in alphabet:
+            ct += key[alphabet.index(ch)]
+        else:
+            ct += ch
+    return ct
+
+keyword = "CIPHER"
+key = generate_key(keyword)
+msg = "hello world"
+print("Key =", key)
+print("Ciphertext =", encrypt(msg, key))
